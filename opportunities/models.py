@@ -41,6 +41,10 @@ class Opportunity(models.Model):
 
     title = models.CharField(max_length=255)
     description = models.TextField()
+    deadline = models.DateTimeField()
+    instructions = models.TextField(
+        help_text="How to apply or get involved. Include links if applicable."
+    )
     post_date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="opportunities"
