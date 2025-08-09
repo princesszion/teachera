@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # # Our future apps (we’ll create them soon)
-    'accounts',
+    'signup',
     'opportunities',
     'resources',
     'nominations_awards',
@@ -96,15 +96,14 @@ DATABASES = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:8080",    # for local React development
-#     "https://teachera.com",     # production domain once deployed
+    # production domain once deployed
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-ALLOWED_HOSTS = [
+AALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    # 'teachera.com',   
 ]
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -124,6 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }

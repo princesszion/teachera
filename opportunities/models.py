@@ -30,17 +30,20 @@ class Opportunity(models.Model):
     VOLUNTEER = "volunteer"
     SCHOLARSHIP = "scholarship"
     TRAINING = "training"
+    FELLOWSHIP = "fellowship"
 
     OPPORTUNITY_CHOICES = [
         (JOB, "Full‐Time Job"),
         (INTERNSHIP, "Internship"),
         (VOLUNTEER, "Volunteer"),
-        (SCHOLARSHIP, "Scholarship/Fellowship"),
+        (SCHOLARSHIP, "Scholarship"),
+        (FELLOWSHIP, "Fellowship"),
         (TRAINING, "Training/Online Course"),
     ]
 
     title = models.CharField(max_length=255)
     description = models.TextField()
+    organization = models.CharField(max_length=255, blank=True, help_text="(optional) Company or Organization Name")
     deadline = models.DateTimeField()
     instructions = models.TextField(
         help_text="How to apply or get involved. Include links if applicable."
