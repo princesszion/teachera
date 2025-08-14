@@ -95,7 +95,8 @@ DATABASES = {
 # Allow our React/Vue frontend (e.g. http://localhost:3000) to call this API
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
-    "http://127.0.0.1:8080",    # for local React development
+    "http://127.0.0.1:8080",
+    "https://teach-era.com",    # for local React development
     # production domain once deployed
 ]
 
@@ -104,6 +105,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 AALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'https://teach-era.com',
 ]
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
