@@ -40,6 +40,11 @@ from rest_framework import viewsets, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend  # ✅ Add this
 from .models import Nomination
 from .serializers import NominationSerializer
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from rest_framework.views import APIView
+
+@method_decorator(csrf_exempt, name='dispatch')
 
 class NominationViewSet(viewsets.ModelViewSet):
     queryset = Nomination.objects.all().order_by("-submitted_at")

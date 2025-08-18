@@ -96,7 +96,8 @@ DATABASES = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:8080",
-    "https://teach-era.com",    # for local React development
+    "https://teach-era.com",
+    # for local React development
     # production domain once deployed
 ]
 

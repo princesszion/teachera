@@ -3,7 +3,11 @@
 from rest_framework import viewsets, permissions, filters
 from .models import Feedback, DiscussionComment
 from .serializers import FeedbackSerializer, DiscussionCommentSerializer
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from rest_framework.views import APIView
 
+@method_decorator(csrf_exempt, name='dispatch')
 class FeedbackViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows anyone to list, create, retrieve, update, and delete Feedback.
@@ -16,7 +20,11 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     search_fields = ["name", "email", "content"]
     ordering_fields = ["created_at"]
 
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from rest_framework.views import APIView
 
+@method_decorator(csrf_exempt, name='dispatch')
 class DiscussionCommentViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows anyone to list, create, retrieve, update, and delete DiscussionComment.

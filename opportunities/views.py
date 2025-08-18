@@ -5,6 +5,11 @@ from rest_framework import viewsets, filters, permissions
 from opportunities.pagination import StandardResultsSetPagination
 from .models import Category, Opportunity
 from .serializers import CategorySerializer, OpportunitySerializer
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from rest_framework.views import APIView
+
+@method_decorator(csrf_exempt, name='dispatch')
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """
@@ -14,7 +19,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all().order_by("name")
     serializer_class = CategorySerializer
     permission_classes = [permissions.AllowAny]  # public access
-
+    
+@method_decorator(csrf_exempt, name='dispatch')
 class OpportunityViewSet(viewsets.ModelViewSet):
     queryset = Opportunity.objects.filter(is_active=True).order_by("-post_date")
     serializer_class = OpportunitySerializer

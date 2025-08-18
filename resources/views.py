@@ -3,7 +3,11 @@
 from rest_framework import viewsets, permissions, filters
 from .models import Resource, ResourcePurchase
 from .serializers import ResourceSerializer, ResourcePurchaseSerializer
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from rest_framework.views import APIView
 
+@method_decorator(csrf_exempt, name='dispatch')
 class ResourceViewSet(viewsets.ModelViewSet):
     """
     API endpoint for listing, retrieving, creating, updating, and deleting Resources.
@@ -16,7 +20,11 @@ class ResourceViewSet(viewsets.ModelViewSet):
     search_fields = ["title", "description", "uploader_name"]
     ordering_fields = ["created_at", "price", "title"]
 
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from rest_framework.views import APIView
 
+@method_decorator(csrf_exempt, name='dispatch')
 class ResourcePurchaseViewSet(viewsets.ModelViewSet):
     """
     API endpoint for listing and creating ResourcePurchases.
