@@ -10,7 +10,6 @@ from django.utils.decorators import method_decorator
 from rest_framework.views import APIView
 
 @method_decorator(csrf_exempt, name='dispatch')
-
 class CategoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Category (e.g. Jobs, Scholarships) to be
@@ -19,8 +18,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all().order_by("name")
     serializer_class = CategorySerializer
     permission_classes = [permissions.AllowAny]  # public access
-    
-@method_decorator(csrf_exempt, name='dispatch')
+
 class OpportunityViewSet(viewsets.ModelViewSet):
     queryset = Opportunity.objects.filter(is_active=True).order_by("-post_date")
     serializer_class = OpportunitySerializer

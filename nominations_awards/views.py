@@ -45,7 +45,6 @@ from django.utils.decorators import method_decorator
 from rest_framework.views import APIView
 
 @method_decorator(csrf_exempt, name='dispatch')
-
 class NominationViewSet(viewsets.ModelViewSet):
     queryset = Nomination.objects.all().order_by("-submitted_at")
     serializer_class = NominationSerializer
