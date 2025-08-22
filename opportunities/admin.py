@@ -10,9 +10,15 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(Opportunity)
+# class OpportunityAdmin(admin.ModelAdmin):
+#     list_display = ("title", "category", "opportunity_type", "post_date", "is_active")
+#     list_filter = ("opportunity_type", "is_active", "category")
+#     search_fields = ("title", "description", "location")
+#     date_hierarchy = "post_date"
+#     ordering = ("-post_date",)
 class OpportunityAdmin(admin.ModelAdmin):
-    list_display = ("title", "category", "opportunity_type", "post_date", "is_active")
-    list_filter = ("opportunity_type", "is_active", "category")
+    list_display = ("title", "category","post_date", "is_active")
+    list_filter = ( "is_active", "category")
     search_fields = ("title", "description", "location")
     date_hierarchy = "post_date"
     ordering = ("-post_date",)
