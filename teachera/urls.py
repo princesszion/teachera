@@ -1,25 +1,43 @@
-# teachera/urls.py
+# # teachera/urls.py
+# from django.contrib import admin
+# from django.urls import path, include
+# from rest_framework import routers
+# from django.conf import settings
+# from django.conf.urls.static import static
+# from django.views.static import serve
+# from django.urls import re_path
+
+# router = routers.DefaultRouter()
+
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('api/v1/', include(router.urls)),
+#     path("api/opportunities/", include("opportunities.urls")),
+#     path("api/resources/", include("resources.urls")),
+#     path("api/feedback/", include("feedback_discussion.urls")),
+#     path("api/nominations/", include("nominations_awards.urls")),
+#     path("api/signup/", include("signup.urls")),
+# ]
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# if settings.DEBUG:
+#     urlpatterns += [
+#         re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+#     ]
+
+
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
-
-
-# We’ll import each app’s ViewSets once we define them
-# from accounts.views import ...
-# from opportunities.views import ...
-# from resources.views import ...
-# from nominations_awards.views import ...
-# from feedback_discussion.views import ...
+from django.views.static import serve
 
 router = routers.DefaultRouter()
-# Example (we’ll uncomment these once the viewsets exist):
-# router.register(r'users', UserViewSet)
-# router.register(r'opportunities', OpportunityViewSet, basename='opportunity')
-# router.register(r'resources', ResourceViewSet, basename='resource')
-# router.register(r'nominations', NominationViewSet, basename='nomination')
-# router.register(r'feedback', FeedbackViewSet, basename='feedback')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +47,17 @@ urlpatterns = [
     path("api/feedback/", include("feedback_discussion.urls")),
     path("api/nominations/", include("nominations_awards.urls")),
     path("api/signup/", include("signup.urls")),
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
 ]
+
+# Media files (uploads)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Static files (CKEditor, admin CSS, etc.)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += [
+        re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    ]
+CKEDITOR_5_CUSTOM_PATH = "django_ckeditor_5/dist/bundle.js"
+CKEDITOR_5_CUSTOM_CSS = "django_ckeditor_5/dist/styles.css"
