@@ -2,8 +2,9 @@
 
 from rest_framework import serializers
 from .models import Nomination
+from common.serializers import AbsoluteMediaURLMixin
 
-class NominationSerializer(serializers.ModelSerializer):
+class NominationSerializer(AbsoluteMediaURLMixin, serializers.ModelSerializer):
     """
     Serializer for Nomination:
       - Exposes all fields.
@@ -23,5 +24,6 @@ class NominationSerializer(serializers.ModelSerializer):
             "nominated_by_email",
             "submitted_at",
             "approved",
+            "photo",
         ]
         read_only_fields = ["id", "submitted_at"]

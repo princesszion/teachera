@@ -29,7 +29,10 @@ class OpportunityViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ["title", "description", "location"]
     ordering_fields = ["post_date", "title"]
-
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request  # ✅ gives mixin access to build_absolute_uri
+        return context
     def get_queryset(self):
         return Opportunity.objects.filter(is_active=True).order_by("-post_date")
 

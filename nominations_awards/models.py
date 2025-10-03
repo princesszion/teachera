@@ -58,7 +58,12 @@ class Nomination(models.Model):
         default=False,
         help_text="Set to True once an admin approves this nomination"
     )
-
+    photo = models.ImageField(
+        upload_to="nominations/",
+        blank=True,
+        null=True,
+        help_text="Upload a photo for Teacher of the Month/Year"
+    )
     class Meta:
         ordering = ["-submitted_at"]
 

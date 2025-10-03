@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.utils.text import slugify
+from django.utils import timezone
 
 class Category(models.Model):
     """
@@ -63,6 +64,11 @@ class Opportunity(models.Model):
     location = models.CharField(
         max_length=150, blank=True, help_text="(optional) City, Country, or Online"
     )
+    deadline = models.DateTimeField()
+
+    @property
+    def is_closed(self):
+        return self.deadline < timezone.now()
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

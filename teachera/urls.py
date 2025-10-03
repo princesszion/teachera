@@ -47,14 +47,14 @@ urlpatterns = [
     path("api/feedback/", include("feedback_discussion.urls")),
     path("api/nominations/", include("nominations_awards.urls")),
     path("api/signup/", include("signup.urls")),
-    path("ckeditor5/", include('django_ckeditor_5.urls')),
-]
+    path("ckeditor5/", include('django_ckeditor_5.urls')),]
 
 # Media files (uploads)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Static files (CKEditor, admin CSS, etc.)
 if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += [
         re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),

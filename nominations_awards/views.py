@@ -50,8 +50,8 @@ class NominationViewSet(viewsets.ModelViewSet):
     serializer_class = NominationSerializer
     permission_classes = [permissions.AllowAny]
 
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]  # ✅ Add DjangoFilterBackend
-    filterset_fields = ["approved", "category"]  # ✅ Enable filtering by these fields
+    # filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]  # ✅ Add DjangoFilterBackend
+    # filterset_fields = ["approved", "category"]  # ✅ Enable filtering by these fields
 
     search_fields = [
         "nominee_name",

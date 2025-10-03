@@ -12,6 +12,7 @@ class NominationAdmin(admin.ModelAdmin):
         "nominee_institution",
         "submitted_at",
         "approved",
+        "photo",
     )
     list_filter = ("category", "approved", "submitted_at")
     search_fields = (
